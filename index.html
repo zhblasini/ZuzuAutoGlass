@@ -1,223 +1,1852 @@
-You are an expert full-stack web developer and UI/UX designer. Build a complete, 
-high-converting, single-file HTML website for an automotive glass shop called 
-**Zuzu Auto Glass**. The website must be fully responsive, visually stunning, 
-and built entirely in ONE single HTML file (with all CSS and JavaScript embedded 
-inline — no external files, no frameworks, no build tools).
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zuzu Auto Glass | Clear Vision. Expert Care.</title>
+    <meta name="description" content="Professional windshield repair, full replacement, and automotive water leak detection in Barrie, Ontario. Fast, reliable, and insurance approved.">
+    
+    <!-- Fonts -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,800;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap');
+    </style>
 
----
+    <!-- Custom CSS Stylesheet -->
+    <style>
+        /* CSS Reset & Variables */
+        :root {
+            --primary: #0A1628;
+            --accent: #00C2FF;
+            --secondary: #1E2A3A;
+            --text-light: #F0F4F8;
+            --text-muted: #A0AEC0;
+            --cta: #FF6B00;
+            --cta-hover: #E05E00;
+            --glass-bg: rgba(30, 42, 58, 0.45);
+            --glass-border: rgba(0, 194, 255, 0.15);
+            --font-headline: 'Barlow Condensed', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+            --transition-speed: 0.3s;
+            --container-max: 1200px;
+        }
 
-## BUSINESS DETAILS
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
 
-- **Business Name:** Zuzu Auto Glass
-- **Tagline:** "Clear Vision. Expert Care."
-- **Core Services:**
-  1. Windshield Repair (chips, cracks, bullseyes)
-  2. Windshield Replacement (all makes & models)
-  3. Automotive Water Leak Detection & Repair
-- **Target Customer:** Vehicle owners, fleet managers, insurance clients
-- **Tone:** Professional, trustworthy, fast, local, expert
+        body {
+            background-color: var(--primary);
+            color: var(--text-light);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
 
----
+        h1, h2, h3, h4 {
+            font-family: var(--font-headline);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 800;
+        }
 
-## DESIGN DIRECTION
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
 
-- **Color Palette:**
-  - Primary: Deep Navy Blue (#0A1628)
-  - Accent: Electric Cyan / Ice Blue (#00C2FF)
-  - Secondary: Charcoal (#1E2A3A)
-  - Text: White & Light Gray (#F0F4F8)
-  - CTA Button: Bright Amber/Orange (#FF6B00)
-- **Typography:**
-  - Headlines: "Bebas Neue" or "Barlow Condensed" (import from Google Fonts)
-  - Body: "DM Sans" or "Nunito" (clean, readable)
-- **Aesthetic:** Industrial-premium — dark, sleek, bold. Think automotive brand 
-  meets glass/clarity. Use glass-morphism cards, subtle grid textures, 
-  and diagonal section dividers.
-- **Animations:** Smooth scroll-reveal animations on sections, hover effects 
-  on cards and buttons, a subtle shimmer/glare animation on the hero glass 
-  graphic. Use CSS keyframes only (no JS libraries).
+        ul {
+            list-style: none;
+        }
 
----
+        img, svg {
+            display: block;
+            max-width: 100%;
+        }
 
-## FULL PAGE STRUCTURE
+        button, input, select, textarea {
+            font-family: inherit;
+            font-size: inherit;
+        }
 
-### 1. STICKY HEADER / NAV
-- Logo: "ZUZU AUTO GLASS" in bold condensed font with a small windshield icon (SVG inline)
-- Nav links: Home | Services | Why Us | Process | Reviews | Contact
-- Top bar above nav: phone number, "Free Quote" badge, "Mobile Service Available" badge
-- CTA button in nav: "Get Free Quote" (amber button)
-- Mobile hamburger menu (pure CSS or minimal JS toggle)
+        .container {
+            width: 100%;
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
 
----
+        /* Utilities */
+        .section-padding {
+            padding: 6rem 0;
+        }
 
-### 2. HERO SECTION (Full-width, above the fold)
-- Bold headline: "CRYSTAL CLEAR. DONE RIGHT."
-- Sub-headline: "Windshield Repair, Replacement & Water Leak Fixes — Fast, Reliable & Affordable"
-- Two CTA buttons side-by-side:
-  - "GET FREE QUOTE" (filled amber)
-  - "CALL NOW" (outlined white)
-- Trust badges row: ✅ Insurance Approved | ✅ Lifetime Warranty | ✅ Same-Day Service | ✅ Mobile Service
-- Hero background: dark automotive scene with a dramatic cracked windshield 
-  overlay using CSS gradients + SVG geometric shapes (no real images needed — 
-  create the effect with CSS shapes, gradients, and a large SVG windshield 
-  outline with a glare shimmer animation)
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 4rem 0;
+            }
+        }
 
----
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #fff;
+            position: relative;
+        }
 
-### 3. SERVICES SECTION
-Title: "WHAT WE FIX"
-Three large cards (glass-morphism style on dark background), one per service:
+        .section-title span {
+            color: var(--accent);
+        }
 
-**Card 1 — Windshield Repair**
-- Icon: SVG crack/chip icon
-- Headline: "Chip & Crack Repair"
-- Description: "Small chips and cracks repaired in 30 minutes or less. 
-  Stops spreading, restores clarity, saves your windshield."
-- Bullet points: ✓ Chips up to 1" ✓ Cracks up to 6" ✓ Insurance direct billing ✓ 30-min service
-- CTA: "Book Repair →"
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--cta);
+            margin: 0.5rem auto 0;
+            border-radius: 2px;
+        }
 
-**Card 2 — Windshield Replacement**
-- Icon: SVG windshield outline icon
-- Headline: "Full Windshield Replacement"
-- Description: "OEM and OEM-equivalent glass for all makes and models. 
-  Precision installation by certified technicians."
-- Bullet points: ✓ All makes & models ✓ OEM & aftermarket glass ✓ ADAS recalibration ✓ Lifetime warranty
-- CTA: "Book Replacement →"
+        /* Glassmorphism utility */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            transition: all var(--transition-speed);
+        }
 
-**Card 3 — Water Leak Repair**
-- Icon: SVG water drop / rain icon
-- Headline: "Automotive Water Leak Repair"
-- Description: "Wet carpets? Water intrusion? We find and seal every leak — 
-  sunroof, windshield seal, door seals, and more."
-- Bullet points: ✓ Full leak diagnosis ✓ Sunroof seals ✓ Door & window seals ✓ Mold prevention
-- CTA: "Book Leak Fix →"
+        /* Diagonal Layout Separators */
+        .diagonal-divider {
+            position: relative;
+            background: var(--primary);
+        }
 
----
+        .diagonal-divider::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to right bottom, var(--secondary) 50%, transparent 50%);
+            transform: translateY(-100%);
+            z-index: 1;
+            pointer-events: none;
+        }
 
-### 4. WHY CHOOSE US SECTION
-Title: "WHY ZUZU AUTO GLASS?"
-Dark section with 6 icon + stat tiles in a 3x2 grid:
-1. 🏆 10+ Years Experience
-2. ⚡ Same-Day Appointments
-3. 🚗 Mobile Service Available
-4. 💳 All Insurance Accepted
-5. 🔧 Certified Technicians
-6. ✅ Lifetime Warranty on Installs
+        /* Buttons & Interactions */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 2rem;
+            font-family: var(--font-headline);
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition-speed) cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            letter-spacing: 0.05em;
+        }
 
-Add a short paragraph: "We're not a chain. We're your local auto glass experts 
-who treat every vehicle like it's our own. Fast turnaround, honest pricing, 
-and work that lasts."
+        .btn-amber {
+            background-color: var(--cta);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
+        }
 
----
+        .btn-amber:hover {
+            background-color: var(--cta-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 0, 0.6);
+        }
 
-### 5. HOW IT WORKS (Process Section)
-Title: "AS EASY AS 1-2-3"
-Horizontal stepper (3 steps) with connecting line/arrow between them:
-- Step 1: 📞 Call or Book Online — "Tell us your vehicle and damage. 
-  Get an instant quote."
-- Step 2: 🗓 Schedule Your Service — "Choose a time that works — 
-  we come to you or you come to us."
-- Step 3: ✅ Drive Away Happy — "Your glass is fixed, sealed, and 
-  backed by our warranty."
+        .btn-outline {
+            background-color: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+        }
 
----
+        .btn-outline:hover {
+            background-color: #fff;
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+        }
 
-### 6. SOCIAL PROOF / REVIEWS SECTION
-Title: "WHAT OUR CUSTOMERS SAY"
-3 review cards (glassmorphism), each with:
-- 5-star rating (gold SVG stars)
-- Review text (write realistic, convincing fake reviews)
-- Customer name + vehicle type
-- Google Reviews logo badge
+        /* Scroll Reveal Animation Styles */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
 
-Reviews to write:
-1. Sarah M. — 2021 Toyota RAV4: Fast windshield replacement, 
-   insurance handled directly, looks factory new.
-2. Mike D. — 2019 Ford F-150: Found and fixed a water leak others 
-   couldn't diagnose. Dry inside ever since.
-3. Jennifer L. — 2022 Honda Civic: Chip repair in 25 minutes. 
-   Saved me from a full replacement. Amazing service!
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-Add below: "⭐ 4.9/5 stars · 200+ Google Reviews" with a "Read All Reviews" button
+        /* 1. TOP BAR & HEADER */
+        .top-bar {
+            background-color: #050b14;
+            font-size: 0.85rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
 
----
+        .top-bar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
 
-### 7. INSURANCE SECTION
-Title: "WE WORK WITH YOUR INSURANCE"
-Short copy: "Windshield repair and replacement is often 100% covered by 
-comprehensive auto insurance — with zero deductible. We handle all the 
-paperwork and bill your insurer directly."
-Logos row: Show text placeholders for common insurers 
-(State Farm, Allstate, Intact, Desjardins, TD Insurance, Aviva)
-CTA: "Check My Coverage →"
+        .top-bar-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
 
----
+        .top-bar-right {
+            display: flex;
+            gap: 1rem;
+        }
 
-### 8. CONTACT / QUOTE SECTION
-Title: "GET YOUR FREE QUOTE TODAY"
-Split layout:
-- LEFT: Contact form with fields:
-  - Name (text)
-  - Phone (tel)
-  - Email (email)
-  - Vehicle Year / Make / Model (text)
-  - Service needed (dropdown: Repair / Replacement / Water Leak / Not Sure)
-  - Describe damage (textarea)
-  - "GET MY FREE QUOTE" submit button (amber, full width)
-- RIGHT: Contact info block:
-  - 📞 Phone: (705) 555-0199
-  - 📧 Email: info@zuzuautoglass.com
-  - 📍 Address: Barrie, Ontario
-  - 🕐 Hours: Mon–Fri 8am–6pm | Sat 9am–4pm | Sun: Mobile Only
-  - Embedded Google Maps placeholder (a styled dark box with 
-    "View on Google Maps" link)
+        .badge {
+            background: rgba(0, 194, 255, 0.15);
+            color: var(--accent);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-weight: 500;
+            border: 1px solid rgba(0, 194, 255, 0.3);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
 
----
+        .header-sticky {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: padding var(--transition-speed), background-color var(--transition-speed);
+        }
 
-### 9. FOOTER
-- Logo + tagline
-- Quick links: Services | Reviews | Contact | Privacy Policy
-- Social icons: Facebook, Instagram, Google (SVG icons inline)
-- Copyright: "© 2025 Zuzu Auto Glass — Barrie, Ontario. 
-  All Rights Reserved."
-- Bottom strip: "Licensed & Insured | AGRSS Certified | 
-  Insurance Direct Billing Available"
+        .header-sticky.shrink {
+            padding: 0.2rem 0;
+            background-color: rgba(5, 11, 20, 0.98);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
 
----
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
 
-## TECHNICAL REQUIREMENTS
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-headline);
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: #fff;
+        }
 
-1. **Single HTML file** — all CSS in `<style>` tags, all JS in `<script>` tags
-2. **Fully responsive** — mobile-first, works perfectly at 375px, 768px, 1280px+
-3. **NO real images** — use CSS gradients, SVG shapes, and emoji icons to 
-   simulate visuals beautifully
-4. **Smooth scroll** — clicking nav links scrolls smoothly to sections
-5. **Scroll-reveal animations** — sections fade/slide in as user scrolls 
-   (use IntersectionObserver in vanilla JS)
-6. **Form validation** — basic JS validation before submission 
-   (show success message, no backend needed)
-7. **Performance** — no external JS libraries (no jQuery, no Bootstrap). 
-   Only Google Fonts via @import in CSS.
-8. **Accessibility** — semantic HTML5 tags, alt text on SVGs, 
-   ARIA labels on buttons
-9. **Mobile nav** — hamburger menu that toggles open/close with smooth animation
-10. **Sticky header** — shrinks/changes opacity on scroll using JS scroll listener
-11. **CTA micro-interactions** — buttons have hover scale + glow effects
-12. **Glass-morphism cards** — use backdrop-filter: blur() + 
-    semi-transparent backgrounds for service and review cards
-13. **Counter animation** — the "Why Us" stats count up when scrolled into view 
-    (e.g., "10+ Years" counts from 0 to 10)
+        .logo span {
+            color: var(--accent);
+        }
 
----
+        .logo svg {
+            width: 32px;
+            height: 32px;
+            fill: var(--accent);
+        }
 
-## OUTPUT INSTRUCTIONS
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
 
-- Output the COMPLETE HTML file from `<!DOCTYPE html>` to `</html>`
-- Do NOT truncate or summarize any section
-- Do NOT use placeholder comments like "// add styles here" 
-  — write ALL the actual code
-- Every section listed above must be fully coded and styled
-- The result should be immediately copy-pasteable into a .html file 
-  and open perfectly in a browser with zero modifications needed
-- Make it genuinely impressive — this is a real business website 
-  that needs to convert visitors into customers
+        .nav-link {
+            font-weight: 500;
+            position: relative;
+            padding: 0.25rem 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width var(--transition-speed);
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hamburger Styles */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 110;
+            padding: 0.5rem;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        /* Mobile Hamburger active transforms */
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        @media (max-width: 992px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 400px;
+                height: 100vh;
+                background-color: var(--secondary);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2.5rem;
+                transition: right 0.4s cubic-bezier(0.77, 0.2, 0.05, 1);
+                box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+                z-index: 105;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-cta {
+                width: 80%;
+            }
+        }
+
+        /* 2. HERO SECTION */
+        .hero {
+            position: relative;
+            padding: 8rem 0 10rem;
+            background: radial-gradient(circle at 70% 30%, var(--secondary) 0%, var(--primary) 70%);
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 5;
+        }
+
+        .hero-headline {
+            font-size: clamp(3.5rem, 7vw, 6rem);
+            line-height: 0.9;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #ffffff, var(--text-muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-sub {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3.5rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-badges {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-badge-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        .hero-badge-item svg {
+            fill: var(--accent);
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Animated Hero SVG Visual */
+        .hero-visual {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .svg-canvas {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 10px 20px rgba(0, 194, 255, 0.2));
+        }
+
+        /* Shimmer/Glare Effect Keyframes */
+        @keyframes glareMove {
+            0% { transform: translate(-50%, -50%) rotate(-30deg) translateX(-300px); }
+            40% { transform: translate(-50%, -50%) rotate(-30deg) translateX(300px); }
+            100% { transform: translate(-50%, -50%) rotate(-30deg) translateX(300px); }
+        }
+
+        .glare-line {
+            animation: glareMove 6s infinite ease-in-out;
+        }
+
+        @media (max-width: 992px) {
+            .hero {
+                padding: 5rem 0 6rem;
+            }
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-sub {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-actions {
+                justify-content: center;
+            }
+            .hero-badges {
+                justify-content: center;
+            }
+            .hero-visual {
+                height: 300px;
+                order: -1;
+            }
+        }
+
+        /* 3. SERVICES SECTION */
+        .services-section {
+            background-color: var(--secondary);
+            position: relative;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            padding: 3rem 2rem;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 194, 255, 0.4);
+            box-shadow: 0 12px 40px rgba(0, 194, 255, 0.1);
+        }
+
+        .service-icon-wrap {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, rgba(0, 194, 255, 0.2), transparent);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(0, 194, 255, 0.2);
+        }
+
+        .service-icon-wrap svg {
+            width: 38px;
+            height: 38px;
+            fill: var(--accent);
+        }
+
+        .service-title {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .service-desc {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            flex-grow: 1;
+        }
+
+        .service-bullets {
+            margin-bottom: 2rem;
+        }
+
+        .service-bullet {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .service-bullet svg {
+            fill: var(--accent);
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+        }
+
+        .service-link {
+            font-family: var(--font-headline);
+            font-size: 1.2rem;
+            color: var(--accent);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: bold;
+            transition: transform var(--transition-speed);
+        }
+
+        .service-link:hover {
+            color: #fff;
+        }
+
+        .service-link:hover span {
+            transform: translateX(5px);
+        }
+
+        .service-link span {
+            transition: transform var(--transition-speed);
+        }
+
+        /* 4. WHY CHOOSE US SECTION */
+        .why-section {
+            background-color: var(--primary);
+        }
+
+        .why-layout {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        @media (max-width: 992px) {
+            .why-layout {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+        }
+
+        .why-text-block h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .why-text-block p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 576px) {
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .why-tile {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: background var(--transition-speed);
+        }
+
+        .why-tile:hover {
+            background: rgba(0, 194, 255, 0.04);
+            border-color: rgba(0, 194, 255, 0.15);
+        }
+
+        .why-tile-icon {
+            font-size: 2rem;
+            line-height: 1;
+        }
+
+        .why-tile-content h4 {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 0.25rem;
+        }
+
+        .why-tile-content p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* 5. HOW IT WORKS SECTION */
+        .process-section {
+            background-color: var(--secondary);
+            position: relative;
+        }
+
+        .process-stepper {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            position: relative;
+        }
+
+        @media (max-width: 768px) {
+            .process-stepper {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .process-node {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            border: 3px solid var(--accent);
+            color: var(--accent);
+            font-family: var(--font-headline);
+            font-size: 1.75rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 0 15px rgba(0, 194, 255, 0.3);
+        }
+
+        .process-step h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #fff;
+        }
+
+        .process-step p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        /* Stepper connector lines */
+        .process-stepper::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: linear-gradient(to right, var(--accent), var(--cta), var(--accent));
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .process-stepper::before {
+                display: none;
+            }
+        }
+
+        /* 6. REVIEWS SECTION */
+        .reviews-section {
+            background-color: var(--primary);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .review-card {
+            padding: 2.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .review-stars {
+            display: flex;
+            gap: 0.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .review-stars svg {
+            width: 18px;
+            height: 18px;
+            fill: #FFD700;
+        }
+
+        .review-text {
+            font-style: italic;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            flex-grow: 1;
+        }
+
+        .review-author {
+            font-family: var(--font-headline);
+            font-size: 1.25rem;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .review-vehicle {
+            font-size: 0.85rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .reviews-footer {
+            text-align: center;
+        }
+
+        .reviews-summary {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .google-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.05);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+
+        /* 7. INSURANCE SECTION */
+        .insurance-section {
+            background-color: #0d1b2d;
+            border-top: 1px solid rgba(0, 194, 255, 0.1);
+            border-bottom: 1px solid rgba(0, 194, 255, 0.1);
+            text-align: center;
+        }
+
+        .insurance-text {
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        .insurance-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+            opacity: 0.7;
+        }
+
+        .insurance-logo-text {
+            font-family: var(--font-headline);
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: rgba(254, 254, 254, 0.5);
+            letter-spacing: 0.05em;
+            border: 1px dashed rgba(255,255,255,0.1);
+            padding: 0.5rem 1rem;
+        }
+
+        /* 8. CONTACT & QUOTE SECTION */
+        .contact-section {
+            background-color: var(--secondary);
+            position: relative;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 4rem;
+        }
+
+        @media (max-width: 992px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+
+        /* Form styling */
+        .quote-form {
+            background: rgba(10, 22, 40, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 2.5rem;
+            border-radius: 12px;
+        }
+
+        @media (max-width: 480px) {
+            .quote-form {
+                padding: 1.5rem;
+            }
+        }
+
+        .form-group-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        @media (max-width: 576px) {
+            .form-group-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+            color: var(--text-light);
+            letter-spacing: 0.05em;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background-color: var(--primary);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #fff;
+            border-radius: 6px;
+            transition: border-color var(--transition-speed);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300C2FF'%3E%3Cpath d='M7 10l5 5 5-5H7z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1.5rem;
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-submit {
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        /* Success banner state */
+        .form-success-msg {
+            display: none;
+            background: rgba(0, 194, 255, 0.1);
+            border: 1px solid var(--accent);
+            color: #fff;
+            padding: 1.5rem;
+            border-radius: 6px;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Contact Details / Sidebar */
+        .contact-info-block {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .info-icon-shell {
+            background: rgba(0, 194, 255, 0.1);
+            border: 1px solid rgba(0, 194, 255, 0.2);
+            width: 44px;
+            height: 44px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .info-icon-shell svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--accent);
+        }
+
+        .info-text h4 {
+            font-size: 1.25rem;
+            color: #fff;
+            margin-bottom: 0.2rem;
+        }
+
+        .info-text p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Map Box Mock */
+        .map-mock-box {
+            width: 100%;
+            height: 220px;
+            background: radial-gradient(ellipse at center, #1b263b 0%, #0a1118 100%);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .map-mock-box::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            top: -50%;
+            left: -50%;
+            transform: rotate(15deg);
+        }
+
+        .map-pin-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 2;
+            animation: bounce 2s infinite ease-in-out;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .map-link {
+            position: relative;
+            z-index: 2;
+            font-family: var(--font-headline);
+            font-size: 1.1rem;
+            color: var(--accent);
+            font-weight: bold;
+            border-bottom: 1px dashed var(--accent);
+        }
+
+        .map-link:hover {
+            color: #fff;
+            border-color: #fff;
+        }
+
+        /* 9. FOOTER */
+        footer {
+            background-color: #050b14;
+            padding: 5rem 0 0;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr repeat(2, 1fr);
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+            max-width: 320px;
+            font-size: 0.95rem;
+        }
+
+        .social-row {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icon-link {
+            width: 38px;
+            height: 38px;
+            background-color: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-speed);
+        }
+
+        .social-icon-link svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--text-muted);
+            transition: fill var(--transition-speed);
+        }
+
+        .social-icon-link:hover {
+            background-color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .social-icon-link:hover svg {
+            fill: var(--primary);
+        }
+
+        .footer-col h4 {
+            font-size: 1.35rem;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 2px;
+            background-color: var(--accent);
+            margin-top: 0.4rem;
+        }
+
+        .footer-links-list display: flex;
+        .footer-links-list flex-direction: column;
+        .footer-links-list gap: 0.75rem;
+
+        .footer-links-list li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links-list a {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .footer-links-list a:hover {
+            color: var(--accent);
+            padding-left: 4px;
+        }
+
+        .footer-bottom-strip {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 1.5rem 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .footer-bottom-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-certifications {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .cert-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .cert-item::before {
+            content: '•';
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="top-bar">
+        <div class="container top-bar-container">
+            <div class="top-bar-left">
+                <span class="badge">Mobile Service Available</span>
+                <span>Barrie, ON & Surrounding Areas</span>
+            </div>
+            <div class="top-bar-right">
+                <span class="badge">Free Quote</span>
+                <strong>📞 (705) 555-0199</strong>
+            </div>
+        </div>
+    </div>
+
+    <!-- STICKY HEADER / NAVIGATION -->
+    <header class="header-sticky" id="mainHeader">
+        <div class="container nav-container">
+            <!-- Inline SVG Windshield Logo -->
+            <a href="#" class="logo" aria-label="Zuzu Auto Glass Home">
+                <svg viewBox="0 0 24 24">
+                    <path d="M21.5,14.6L20.1,7.2C19.8,5.4 18.2,4.1 16.3,4.1H7.7C5.8,4.1 4.2,5.4 3.9,7.2L2.5,14.6C2.2,16.5 3.3,18.3 5.1,18.9L11.1,20.9C11.7,21.1 12.3,21.1 12.9,20.9L18.9,18.9C20.7,18.3 21.8,16.5 21.5,14.6ZM7.7,6.1H16.3C17.2,6.1 17.9,6.7 18.1,7.5L19.2,13.1H4.8L5.9,7.5C6.1,6.7 6.8,6.1 7.7,6.1Z"/>
+                </svg>
+                ZUZU <span>AUTO GLASS</span>
+            </a>
+
+            <!-- Navigation Links Wrapper -->
+            <nav>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#" class="nav-link">Home</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#whyus" class="nav-link">Why Us</a></li>
+                    <li><a href="#process" class="nav-link">Process</a></li>
+                    <li><a href="#reviews" class="nav-link">Reviews</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                    <li class="nav-cta"><a href="#contact" class="btn btn-amber" style="padding: 0.5rem 1.25rem; font-size: 1.1rem;">Get Free Quote</a></li>
+                </ul>
+            </nav>
+
+            <!-- Accessible Mobile Toggle Button -->
+            <button class="hamburger" id="hamburgerToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <main>
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <h1 class="hero-headline">CRYSTAL CLEAR.<br>DONE RIGHT.</h1>
+                    <p class="hero-sub">Windshield Repair, Full Replacement & Water Leak Fixes — Fast, Reliable & Insurance Approved Local Experts.</p>
+                    <div class="hero-actions">
+                        <a href="#contact" class="btn btn-amber">Get Free Quote</a>
+                        <a href="tel:7055550199" class="btn btn-outline">Call Now</a>
+                    </div>
+                    <div class="hero-badges">
+                        <div class="hero-badge-item">
+                            <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M11,16.5L18,9.5L16.58,8.08L11,13.67L8.42,11.08L7,12.5L11,16.5Z"/></svg>
+                            Insurance Approved
+                        </div>
+                        <div class="hero-badge-item">
+                            <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M11,16.5L18,9.5L16.58,8.08L11,13.67L8.42,11.08L7,12.5L11,16.5Z"/></svg>
+                            Lifetime Warranty
+                        </div>
+                        <div class="hero-badge-item">
+                            <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M11,16.5L18,9.5L16.58,8.08L11,13.67L8.42,11.08L7,12.5L11,16.5Z"/></svg>
+                            Same-Day Service
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Geometric Shimmer Windshield Graphic -->
+                <div class="hero-visual">
+                    <svg class="svg-canvas" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <!-- Background Radial Lighting Grid -->
+                            <radialGradient id="netGlow" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" stop-color="#00C2FF" stop-opacity="0.25" />
+                                <stop offset="100%" stop-color="#0A1628" stop-opacity="0" />
+                            </radialGradient>
+                            <!-- Glass Shimmer Gradient Mask -->
+                            <linearGradient id="shimmerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#fff" stop-opacity="0"/>
+                                <stop offset="45%" stop-color="#fff" stop-opacity="0"/>
+                                <stop offset="50%" stop-color="#fff" stop-opacity="0.6"/>
+                                <stop offset="55%" stop-color="#fff" stop-opacity="0"/>
+                                <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- Grid Aura Base -->
+                        <circle cx="250" cy="200" r="180" fill="url(#netGlow)" />
+                        <!-- Windshield Wireframe Polyline Geometry -->
+                        <path d="M 80 120 L 420 120 L 450 260 L 50 260 Z" fill="rgba(30, 42, 58, 0.4)" stroke="#00C2FF" stroke-width="3" stroke-linejoin="round"/>
+                        <path d="M 95 135 L 405 135 L 430 245 L 70 245 Z" fill="none" stroke="rgba(0, 194, 255, 0.2)" stroke-width="1.5"/>
+                        <!-- Rearview mirror silhouette anchor -->
+                        <path d="M 235 120 L 245 140 L 255 140 L 265 120 Z" fill="#1E2A3A" opacity="0.8"/>
+                        <rect x="225" y="140" width="50" height="15" rx="3" fill="#0A1628" stroke="rgba(0, 194, 255, 0.3)"/>
+                        
+                        <!-- Embedded Animation Strip (Moving Glare Shield) -->
+                        <g clip-path="url(#glassClip)">
+                            <clipPath id="glassClip">
+                                <path d="M 80 120 L 420 120 L 450 260 L 50 260 Z" />
+                            </clipPath>
+                            <rect class="glare-line" x="-100" y="-100" width="700" height="600" fill="url(#shimmerGrad)" pointer-events="none" />
+                        </g>
+
+                        <!-- Clean Vector Grid Accents -->
+                        <circle cx="80" cy="120" r="4" fill="#FF6B00" />
+                        <circle cx="420" cy="120" r="4" fill="#FF6B00" />
+                        <circle cx="450" cy="260" r="4" fill="#FF6B00" />
+                        <circle cx="50" cy="260" r="4" fill="#FF6B00" />
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES SECTION -->
+        <section id="services" class="services-section section-padding diagonal-divider">
+            <div class="container">
+                <h2 class="section-title">What <span>We Fix</span></h2>
+                <div class="services-grid">
+                    
+                    <!-- Card 1 -->
+                    <div class="service-card glass-card reveal">
+                        <div class="service-icon-wrap">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12C20,14.15 19.16,16.1 17.77,17.56L16.36,16.15C17.38,15.12 18,13.63 18,12A6,6 0 0,0 12,6V4M12,8A4,4 0 0,1 16,12C16,13.1 15.55,14.1 14.83,14.83L13.41,13.41C13.78,13.05 14,12.55 14,12A2,2 0 0,0 12,10V8M12,12A0,0 0 0,1 12,12V20A8,8 0 0,1 4,12C4,9.85 4.84,7.9 6.23,6.44L7.64,7.85C6.62,8.88 6,10.37 6,12A6,6 0 0,0 12,18V12Z"/>
+                            </svg>
+                        </div>
+                        <h3 class="service-title">Chip & Crack Repair</h3>
+                        <p class="service-desc">Small chips and structural cracks repaired structural-grade resin injection in under 30 minutes. Halts deterioration instantly.</p>
+                        <ul class="service-bullets">
+                            <li class="service-bullet"><svg viewBox="0 0 24 24"><path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/></svg> Chips up to 1" Diameter</li>
+                            <li class="service-bullet"><svg viewBox="0 0 24 24"><path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/></svg> Cracks up to 6" Length</li>
+                            <li class="service-bullet"><svg viewBox="0 0 24 24"><path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/></svg> Direct Insurance Billing</li>
+                            <li class="service-bullet"><svg viewBox="0 0 24 24"><path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/></svg> Quick 30-Minute Turnaround</li>
+                        </ul>
+                        <a href="#contact" class="service-link">Book Repair <span>→</span></a>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="service-card glass-card reveal">
+                        <div class="service-icon-wrap">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M23,14.6L21.6,7.2C21.3,5.4 19.7,4.1 17.8,4.1H6.2C4.3,4.1 2.7,5.4 2.4,7.2L1,14.6C0.7,16.5 1.8,18.3 3.6,18.9L11.1,21.4C11.7,21.6 12.3,21.6 12.9,21.4L20.4,18.9C22.2,18.3 23.3,16.5 23,14.6Z"/>
+                            </svg>
+                        </div>
+                        <h3 class="service-title">Full Windshield Replacement</h3>
+                        <p class="service-desc">Premium OEM and OEM-equivalent standard auto glass replacements executed for all vehicle types with absolute structural compliance.</p>
+                        <ul class="service-bullets">
+                            <li class="service-bullet"><svg viewBox="0 0 24 24"><path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/></svg> Comprehensive All-Model Support</li>
+                            <li class="service-bullet"><svg viewBox="0 0 24 24"><path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/></svg> Certified OEM Polyurethane System</li>
+                            <li class="service-bullet"><svg viewBox="0 0 24 24"><path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/></svg> Advanced ADAS Recalibration</li>
+                            <li class="service-bullet"><svg viewBox="0 0 24 24"><path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/></svg> Structural Lifetime Warranty</li>
+                        </ul>
+                        <a href="#contact" class="service-link">Book Replacement <span>→</span></a>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="service-card glass-card reveal">
+                        <div class="service-icon-wrap">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12,20A6,6 0 0,1 6,14C6,10.5 12,3.25 12,3.25C12,3.25 18,10.5 18,14A6,6 0 0,1 12,20M12,5.5C10.5,7.58 8,11.41 8,14A4,4 0 0,0 12,18A4,4 0 0,0 16,14C16,11.41 13.5,7.58 12,5.5Z"/>
+                            </svg>
+                        </div>
+                        <h3 class="service-title">Water Leak Detection</h3>
+                        <p class="service-desc">Damp floors or fogged glass cabin spaces? We leverage systematic ultrasonic & dynamic diagnostic sweeps to isolate and seal body leaks.</p>
+                        <ul class="service-bullets">
+                            <li class="service-bullet"><svg viewBox="0 0 24 24"><path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/></svg> Precision Leak Isolation</li>
+                            <li class="service-bullet"><svg viewBox="0 0 24 24"><path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/></svg> Sunroof Track Overhauls</li>
+                            <li class="service-bullet"><svg viewBox="0 0 24 24"><path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/></svg> Door & Pillar Seals Restoration</li>
+                            <li class="service-bullet"><svg viewBox="0 0 24 24"><path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/></svg> Microbial / Mold Deterrence</li>
+                        </ul>
+                        <a href="#contact" class="service-link">Book Leak Fix <span>→</span></a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- WHY CHOOSE US SECTION (With Dynamic Counters) -->
+        <section id="whyus" class="why-section section-padding">
+            <div class="container why-layout">
+                <div class="why-text-block reveal">
+                    <h2>Why Choose<br><span>Zuzu Auto Glass?</span></h2>
+                    <h3>Built on Performance & Local Trust.</h3>
+                    <p>We skip commercial assembly lines. Our local team treats your car like an asset, focusing on tight mechanical seal tolerances and pristine cosmetic alignment every visit.</p>
+                </div>
+
+                <div class="why-grid">
+                    <!-- Tile 1 -->
+                    <div class="why-tile reveal">
+                        <div class="why-tile-icon">🏆</div>
+                        <div class="why-tile-content">
+                            <h4><span class="counter" data-target="10">0</span>+</h4>
+                            <p>Years Field Experience</p>
+                        </div>
+                    </div>
+                    <!-- Tile 2 -->
+                    <div class="why-tile reveal">
+                        <div class="why-tile-icon">⚡</div>
+                        <div class="why-tile-content">
+                            <h4>Same-Day</h4>
+                            <p>Urgent Slots Available</p>
+                        </div>
+                    </div>
+                    <!-- Tile 3 -->
+                    <div class="why-tile reveal">
+                        <div class="why-tile-icon">🚗</div>
+                        <div class="why-tile-content">
+                            <h4>Mobile</h4>
+                            <p>We Dispatch To You</p>
+                        </div>
+                    </div>
+                    <!-- Tile 4 -->
+                    <div class="why-tile reveal">
+                        <div class="why-tile-icon">💳</div>
+                        <div class="why-tile-content">
+                            <h4>Direct Billing</h4>
+                            <p>All Major Insurance</p>
+                        </div>
+                    </div>
+                    <!-- Tile 5 -->
+                    <div class="why-tile reveal">
+                        <div class="why-tile-icon">🔧</div>
+                        <div class="why-tile-content">
+                            <h4>Certified</h4>
+                            <p>Expert Technicians</p>
+                        </div>
+                    </div>
+                    <!-- Tile 6 -->
+                    <div class="why-tile reveal">
+                        <div class="why-tile-icon">✅</div>
+                        <div class="why-tile-content">
+                            <h4>Lifetime</h4>
+                            <p>Installation Warranty</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HOW IT WORKS (Process Section) -->
+        <section id="process" class="process-section section-padding diagonal-divider">
+            <div class="container">
+                <h2 class="section-title">As Easy As <span>1-2-3</span></h2>
+                <div class="process-stepper">
+                    
+                    <div class="process-step reveal">
+                        <div class="process-node">1</div>
+                        <h3>Call or Book Online</h3>
+                        <p>Share your vehicle configurations and damage details. Secure a fixed price quote instantly.</p>
+                    </div>
+
+                    <div class="process-step reveal" style="transition-delay: 0.15s;">
+                        <div class="process-node">2</div>
+                        <h3>Pick a Time Slot</h3>
+                        <p>Select your time preference. Opt for in-shop routing or clean mobile roadside deployment.</p>
+                    </div>
+
+                    <div class="process-step reveal" style="transition-delay: 0.3s;">
+                        <div class="process-node">3</div>
+                        <h3>Drive Away Safely</h3>
+                        <p>Your glass arrives fully set, vacuumed, calibrated, and backed up by an airtight written warranty.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SOCIAL PROOF / REVIEWS SECTION -->
+        <section id="reviews" class="reviews-section section-padding">
+            <div class="container">
+                <h2 class="section-title">Client <span>Reviews</span></h2>
+                <div class="reviews-grid">
+                    
+                    <!-- Review 1 -->
+                    <div class="review-card glass-card reveal">
+                        <div class="review-stars">
+                            <!-- Star SVGs repeated 5x -->
+                            <svg viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
+                            <svg viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
+                            <svg viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
+                            <svg viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
+                            <svg viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
+                        </div>
+                        <p class="review-text">"Fast windshield replacement, insurance handled directly without me raising a finger, looks factory new. Excellent work."</p>
+                        <div class="review-author">Sarah M.</div>
+                        <div class="review-vehicle">2021 Toyota RAV4</div>
+                    </div>
+
+                    <!-- Review 2 -->
+                    <div class="review-card glass-card reveal">
+                        <div class="review-stars">
+                            <svg viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
+                            <svg viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
+                            <svg viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
+                            <svg viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
+                            <svg viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
+                        </div>
+                        <p class="review-text">"Found and fixed a water leak others couldn't diagnose after months of soggy carpets. Dry inside ever since. Highly recommended."</p>
+                        <div class="review-author">Mike D.</div>
+                        <div class="review-vehicle">2019 Ford F-150</div>
+                    </div>
+
+                    <!-- Review 3 -->
+                    <div class="review-card glass-card reveal">
+                        <div class="review-stars">
+                            <svg viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
+                            <svg viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
+                            <svg viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
+                            <svg viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
+                            <svg viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
+                        </div>
+                        <p class="review-text">"Chip repair completed in 25 minutes flat. Saved me from buying a full replacement. Structural integrity restored completely."</p>
+                        <div class="review-author">Jennifer L.</div>
+                        <div class="review-vehicle">2022 Honda Civic</div>
+                    </div>
+
+                </div>
+
+                <div class="reviews-footer reveal">
+                    <div class="reviews-summary">
+                        ⭐ 4.9/5 Stars Across Verified Channels 
+                        <span class="google-badge">
+                            <svg style="width:14px; height:14px; fill:#fff; display:inline; vertical-align:middle; margin-right:4px;" viewBox="0 0 24 24"><path d="M21.35,11.1H12V14.25H18.18C17.66,15.74 16.39,16.79 14.83,17.32V19.38H20.24C23.4,16.47 25.2,12.18 21.35,11.1Z"/></svg>
+                            200+ Google Reviews
+                        </span>
+                    </div>
+                    <a href="#contact" class="btn btn-outline">Read All Reviews</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- INSURANCE COMPLIANCE SECTION -->
+        <section class="insurance-section section-padding">
+            <div class="container">
+                <h2 class="section-title">We Work With <span>Your Insurance</span></h2>
+                <p class="insurance-text">Glass damage repairs are typically completely covered by comprehensive automotive policies with zero deductible penalties. Our office team routes all claims directly to secure full procedural coverage.</p>
+                
+                <div class="insurance-logos">
+                    <div class="insurance-logo-text">STATE FARM</div>
+                    <div class="insurance-logo-text">ALLSTATE</div>
+                    <div class="insurance-logo-text">INTACT</div>
+                    <div class="insurance-logo-text">DESJARDINS</div>
+                    <div class="insurance-logo-text">TD INSURANCE</div>
+                    <div class="insurance-logo-text">AVIVA</div>
+                </div>
+
+                <a href="#contact" class="btn btn-amber">Check My Coverage →</a>
+            </div>
+        </section>
+
+        <!-- CONTACT / QUOTE FORM SECTION -->
+        <section id="contact" class="contact-section section-padding diagonal-divider">
+            <div class="container">
+                <h2 class="section-title">Get a <span>Free Quote</span></h2>
+                
+                <div class="contact-grid">
+                    <!-- Left: Form Block -->
+                    <div class="reveal">
+                        <!-- Success Banner (Triggered by JS validation) -->
+                        <div class="form-success-msg" id="formSuccess">
+                            <h3>✓ Submission Received!</h3>
+                            <p>An auto glass structural expert will call you back with an official line item estimate shortly.</p>
+                        </div>
+
+                        <form class="quote-form" id="quoteForm" novalidate>
+                            <div class="form-group-row">
+                                <div class="form-group">
+                                    <label for="frmName">Full Name *</label>
+                                    <input type="text" id="frmName" class="form-control" placeholder="John Doe" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="frmPhone">Phone Number *</label>
+                                    <input type="tel" id="frmPhone" class="form-control" placeholder="(705) 555-0100" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="frmEmail">Email Address *</label>
+                                <input type="email" id="frmEmail" class="form-control" placeholder="john@example.com" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="frmVehicle">Vehicle Year, Make, Model *</label>
+                                <input type="text" id="frmVehicle" class="form-control" placeholder="e.g., 2021 Ford F-150 SuperCrew" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="frmService">Service Required *</label>
+                                <select id="frmService" class="form-control" required>
+                                    <option value="" disabled selected>Select an option...</option>
+                                    <option value="repair">Windshield Chip / Crack Repair</option>
+                                    <option value="replacement">Full Windshield Replacement</option>
+                                    <option value="leak">Water Leak Diagnosis & Seal</option>
+                                    <option value="not-sure">Multiple / Unsure / Comprehensive Inspection</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="frmDamage">Describe Damage / Scope</label>
+                                <textarea id="frmDamage" class="form-control" placeholder="Please describe placement of chip, length of crack, or where water infiltration occurs..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-amber form-submit">Get My Free Quote</button>
+                        </form>
+                    </div>
+
+                    <!-- Right: Info Panel & Sidebar Coordinates -->
+                    <div class="contact-info-block reveal" style="transition-delay: 0.1s;">
+                        
+                        <div class="info-item">
+                            <div class="info-icon-shell">
+                                <svg viewBox="0 0 24 24"><path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/></svg>
+                            </div>
+                            <div class="info-text">
+                                <h4>Primary Office Hotline</h4>
+                                <p>(705) 555-0199</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon-shell">
+                                <svg viewBox="0 0 24 24"><path d="M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6A2,2 0 0,0 20,4M20,8L12,13L4,8V6L12,11L20,6V8Z"/></svg>
+                            </div>
+                            <div class="info-text">
+                                <h4>Electronic Mail Desk</h4>
+                                <p>info@zuzuautoglass.com</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon-shell">
+                                <svg viewBox="0 0 24 24"><path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z"/></svg>
+                            </div>
+                            <div class="info-text">
+                                <h4>Service Territory Core</h4>
+                                <p>Barrie, Ontario & General Simcoe County Line</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon-shell">
+                                <svg viewBox="0 0 24 24"><path d="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z"/></svg>
+                            </div>
+                            <div class="info-text">
+                                <h4>Hours of Deployment</h4>
+                                <p>Mon–Fri: 8:00 AM – 6:00 PM<br>Sat: 9:00 AM – 4:00 PM<br>Sun: Mobile Emergency Fleet Dispatch Only</p>
+                            </div>
+                        </div>
+
+                        <!-- Dark Styled Map Alternative Box -->
+                        <div class="map-mock-box">
+                            <div class="map-pin-icon">📍</div>
+                            <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="map-link">Open Operational Region Grid Map</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER TERMINAL -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="logo" style="font-size: 2rem;">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M21.5,14.6L20.1,7.2C19.8,5.4 18.2,4.1 16.3,4.1H7.7C5.8,4.1 4.2,5.4 3.9,7.2L2.5,14.6C2.2,16.5 3.3,18.3 5.1,18.9L11.1,20.9C11.7,21.1 12.3,21.1 12.9,20.9L18.9,18.9C20.7,18.3 21.8,16.5 21.5,14.6ZM7.7,6.1H16.3C17.2,6.1 17.9,6.7 18.1,7.5L19.2,13.1H4.8L5.9,7.5C6.1,6.7 6.8,6.1 7.7,6.1Z"/>
+                    </svg>
+                    ZUZU <span>AUTO GLASS</span>
+                </a>
+                <p>"Clear Vision. Expert Care." We set real standards for premium architectural performance on modern automotive hulls.</p>
+                
+                <!-- Social Vector Clusters -->
+                <div class="social-row">
+                    <a href="#" class="social-icon-link" aria-label="Facebook Profile">
+                        <svg viewBox="0 0 24 24"><path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.95 14.22 5.95C15.31 5.95 16.45 6.14 16.45 6.14V8.61H15.19C13.94 8.61 13.55 9.39 13.55 10.18V12.06H16.34L15.89 14.96H13.55V21.96C18.34 21.21 22 17.06 22 12.06C22 6.53 17.5 2.04 12 2.04Z"/></svg>
+                    </a>
+                    <a href="#" class="social-icon-link" aria-label="Instagram Feed">
+                        <svg viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8C2,4.6 4.6,2 7.8,2M12,7A5,5 0 0,0 7,12A5,5 0 0,0 12,17A5,5 0 0,0 17,12A5,5 0 0,0 12,7M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9M17.25,5.5A1.25,1.25 0 0,0 16,6.75A1.25,1.25 0 0,0 17.25,8A1.25,1.25 0 0,0 18.5,6.75A1.25,1.25 0 0,0 17.25,5.5Z"/></svg>
+                    </a>
+                    <a href="#" class="social-icon-link" aria-label="Google Local Business Profile">
+                        <svg viewBox="0 0 24 24"><path d="M21.35,11.1H12V14.25H18.18C17.66,15.74 16.39,16.79 14.83,17.32V19.38H20.24C23.4,16.47 25.2,12.18 21.35,11.1Z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Services List</h4>
+                <ul class="footer-links-list">
+                    <li><a href="#services">Windshield Resins Repair</a></li>
+                    <li><a href="#services">Full Shell Glass Replacements</a></li>
+                    <li><a href="#services">Ultrasonic Water Leak Sweeps</a></li>
+                    <li><a href="#services">ADAS Camera Alignment</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Company Portal</h4>
+                <ul class="footer-links-list">
+                    <li><a href="#whyus">Our Diagnostics Philosophy</a></li>
+                    <li><a href="#reviews">Verified Client Logs</a></li>
+                    <li><a href="#contact">Acquire Commercial Quotes</a></li>
+                    <li><a href="#">Privacy Protection Policy</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom-strip">
+            <div class="container footer-bottom-container">
+                <div>
+                    &copy; 2026 Zuzu Auto Glass &mdash; Barrie, Ontario. Secure Infrastructure Matrix.
+                </div>
+                <div class="footer-certifications">
+                    <span class="cert-item">Licensed & Insured</span>
+                    <span class="cert-item">AGRSS Certified Systematics</span>
+                    <span class="cert-item">Direct Carrier Billing Setup</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTION LOGIC / RUNTIME JAVASCRIPT -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Mobile Menu Open/Close Logic
+            const hamburgerToggle = document.getElementById('hamburgerToggle');
+            const navMenu = document.getElementById('navMenu');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            const toggleMobileMenu = () => {
+                const isExpanded = hamburgerToggle.getAttribute('aria-expanded') === 'true';
+                hamburgerToggle.setAttribute('aria-expanded', !isExpanded);
+                hamburgerToggle.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            };
+
+            hamburgerToggle.addEventListener('click', toggleMobileMenu);
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navMenu.classList.contains('active')) {
+                        toggleMobileMenu();
+                    }
+                });
+            });
+
+            // 2. Sticky Header Diminish Mechanics on Scroll
+            const mainHeader = document.getElementById('mainHeader');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 40) {
+                    mainHeader.classList.add('shrink');
+                } else {
+                    mainHeader.classList.remove('shrink');
+                }
+            });
+
+            // 3. Dynamic Native Scroll Reveal via IntersectionObserver
+            const revealElements = document.querySelectorAll('.reveal');
+            
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Unobserve once element animation states settle
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0.12,
+                rootMargin: '0px 0px -40px 0px'
+            });
+
+            revealElements.forEach(el => revealObserver.observe(el));
+
+            // 4. Numeric Counter Animation Script
+            const counterElements = document.querySelectorAll('.counter');
+            
+            const runCounterAnimation = (element) => {
+                const target = parseInt(element.getAttribute('data-target'), 10);
+                const speed = 150; // Total duration divisor
+                const increment = target / speed;
+                let current = 0;
+
+                const updateValue = () => {
+                    current += increment;
+                    if (current < target) {
+                        element.innerText = Math.ceil(current);
+                        setTimeout(updateValue, 10);
+                    } else {
+                        element.innerText = target;
+                    }
+                };
+                updateValue();
+            };
+
+            const counterObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        runCounterAnimation(entry.target);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            counterElements.forEach(counter => counterObserver.observe(counter));
+
+            // 5. Client Side Web Form Validation & Micro-interactions
+            const quoteForm = document.getElementById('quoteForm');
+            const formSuccess = document.getElementById('formSuccess');
+
+            quoteForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                
+                // Clear state states
+                let isFormValid = true;
+                const requiredFields = quoteForm.querySelectorAll('[required]');
+
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        isFormValid = false;
+                        field.style.borderColor = '#FF6B00';
+                    } else {
+                        field.style.borderColor = 'rgba(255,255,255,0.1)';
+                        
+                        // Precise Email Pattern Check
+                        if (field.type === 'email') {
+                            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                            if (!emailPattern.test(field.value.trim())) {
+                                isFormValid = false;
+                                field.style.borderColor = '#FF6B00';
+                            }
+                        }
+                    }
+                });
+
+                if (isFormValid) {
+                    // Smooth Transition to Success State Viewport
+                    quoteForm.style.display = 'none';
+                    formSuccess.style.display = 'block';
+                    formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    
+                    // console.log("Form successfully validated - Proceed to dispatch matrix transmission hook.");
+                }
+            });
+
+            // Resets borders when visitor types updates
+            quoteForm.querySelectorAll('.form-control').forEach(input => {
+                input.addEventListener('input', () => {
+                    if (input.style.borderColor === 'rgb(255, 107, 0)') {
+                        input.style.borderColor = 'rgba(255,255,255,0.1)';
+                    }
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>
